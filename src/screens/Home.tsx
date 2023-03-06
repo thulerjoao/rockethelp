@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { HStack, IconButton, VStack, useTheme, Text, Heading, FlatList } from 'native-base';
+import { HStack, IconButton, VStack, useTheme, Text, Heading, FlatList, Center } from 'native-base';
 import { SignOut } from 'phosphor-react-native';
 import Logo from '../assets/logo_secondary.svg'
 import { Filter } from '../components/filter';
 import { Order, OrderProp } from '../components/order';
 import { Button } from '../components/button';
+import { ChatTeardropText} from 'phosphor-react-native' 
 
 export function Home() {
 
@@ -12,48 +13,48 @@ export function Home() {
 
     const [ statusSelected, setStatusSelected ] = useState<'open' | 'close'>('open');
     const [ orders, setOrders ] = useState<OrderProp[]>([
-        {
-        id:'123',
-        patrimony: '789654',
-        when: '18/07/2022 as 10:00hr',
-        status: 'open'
-        },
-        {
-            id:'12',
-            patrimony: '789654',
-            when: '18/07/2022 as 10:00hr',
-            status: 'open'
-        },
-        {
-            id:'13',
-            patrimony: '789654',
-            when: '18/07/2022 as 10:00hr',
-            status: 'open'
-        },
-        {
-            id:'23',
-            patrimony: '789654',
-            when: '18/07/2022 as 10:00hr',
-            status: 'open'
-        },
-        {
-            id:'3',
-            patrimony: '789654',
-            when: '18/07/2022 as 10:00hr',
-            status: 'open'
-        },
-        {
-            id:'1',
-            patrimony: '789654',
-            when: '18/07/2022 as 10:00hr',
-            status: 'open'
-        },
-        {
-            id:'2',
-            patrimony: '789654',
-            when: '18/07/2022 as 10:00hr',
-            status: 'open'
-        }
+        // {
+        // id:'123',
+        // patrimony: '789654',
+        // when: '18/07/2022 as 10:00hr',
+        // status: 'open'
+        // },
+        // {
+        //     id:'12',
+        //     patrimony: '789654',
+        //     when: '18/07/2022 as 10:00hr',
+        //     status: 'open'
+        // },
+        // {
+        //     id:'13',
+        //     patrimony: '789654',
+        //     when: '18/07/2022 as 10:00hr',
+        //     status: 'open'
+        // },
+        // {
+        //     id:'23',
+        //     patrimony: '789654',
+        //     when: '18/07/2022 as 10:00hr',
+        //     status: 'open'
+        // },
+        // {
+        //     id:'3',
+        //     patrimony: '789654',
+        //     when: '18/07/2022 as 10:00hr',
+        //     status: 'open'
+        // },
+        // {
+        //     id:'1',
+        //     patrimony: '789654',
+        //     when: '18/07/2022 as 10:00hr',
+        //     status: 'open'
+        // },
+        // {
+        //     id:'2',
+        //     patrimony: '789654',
+        //     when: '18/07/2022 as 10:00hr',
+        //     status: 'open'
+        // }
     ])
 
   return (
@@ -101,6 +102,15 @@ export function Home() {
                 renderItem={({ item })=> <Order data={item}/>}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{paddingBottom: 100}}
+                ListEmptyComponent={()=> (
+                    <Center pt={20}>
+                        <ChatTeardropText color={colors.gray[300]} size={40} />
+                        <Text color={colors.gray[300]} fontSize='xl' mt={6} textAlign='center'>
+                            Você ainda não possui {`\n`}
+                            solicitações { statusSelected === 'open'? 'em andamento':'finalizadas'}
+                        </Text>
+                    </Center>
+                )}
             />
         </VStack>
         <Button element='Nova solicitção' mx={6}/>
