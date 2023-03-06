@@ -4,6 +4,7 @@ import React from 'react';
 import SignIn from './src/screens/SingIn';
 import { THEME } from "./src/styles/theme";
 import Loading from "./src/components/loading";
+import { Home } from "./src/screens/Home";
 
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
         />
-      {fontsLoaded? <SignIn/>: <Loading/>}
+      {fontsLoaded? <Home/>: <Loading/>}
       
     </NativeBaseProvider>
   );
