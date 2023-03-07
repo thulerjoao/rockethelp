@@ -6,6 +6,7 @@ import { Filter } from '../components/filter';
 import { Order, OrderProp } from '../components/order';
 import { Button } from '../components/button';
 import { ChatTeardropText} from 'phosphor-react-native' 
+import { useNavigation } from '@react-navigation/native';
 
 export function Home() {
 
@@ -13,49 +14,59 @@ export function Home() {
 
     const [ statusSelected, setStatusSelected ] = useState<'open' | 'close'>('open');
     const [ orders, setOrders ] = useState<OrderProp[]>([
-        // {
-        // id:'123',
-        // patrimony: '789654',
-        // when: '18/07/2022 as 10:00hr',
-        // status: 'open'
-        // },
-        // {
-        //     id:'12',
-        //     patrimony: '789654',
-        //     when: '18/07/2022 as 10:00hr',
-        //     status: 'open'
-        // },
-        // {
-        //     id:'13',
-        //     patrimony: '789654',
-        //     when: '18/07/2022 as 10:00hr',
-        //     status: 'open'
-        // },
-        // {
-        //     id:'23',
-        //     patrimony: '789654',
-        //     when: '18/07/2022 as 10:00hr',
-        //     status: 'open'
-        // },
-        // {
-        //     id:'3',
-        //     patrimony: '789654',
-        //     when: '18/07/2022 as 10:00hr',
-        //     status: 'open'
-        // },
-        // {
-        //     id:'1',
-        //     patrimony: '789654',
-        //     when: '18/07/2022 as 10:00hr',
-        //     status: 'open'
-        // },
-        // {
-        //     id:'2',
-        //     patrimony: '789654',
-        //     when: '18/07/2022 as 10:00hr',
-        //     status: 'open'
-        // }
+        {
+        id:'123',
+        patrimony: '789654',
+        when: '18/07/2022 as 10:00hr',
+        status: 'open'
+        },
+        {
+            id:'12',
+            patrimony: '789654',
+            when: '18/07/2022 as 10:00hr',
+            status: 'open'
+        },
+        {
+            id:'13',
+            patrimony: '789654',
+            when: '18/07/2022 as 10:00hr',
+            status: 'open'
+        },
+        {
+            id:'23',
+            patrimony: '789654',
+            when: '18/07/2022 as 10:00hr',
+            status: 'open'
+        },
+        {
+            id:'3',
+            patrimony: '789654',
+            when: '18/07/2022 as 10:00hr',
+            status: 'open'
+        },
+        {
+            id:'1',
+            patrimony: '789654',
+            when: '18/07/2022 as 10:00hr',
+            status: 'open'
+        },
+        {
+            id:'2',
+            patrimony: '789654',
+            when: '18/07/2022 as 10:00hr',
+            status: 'open'
+        }
     ])
+
+    const navigation = useNavigation()
+
+    const handleNewOrder = () =>{
+        navigation.navigate('new')
+    }
+
+    const handleOpenDetails = (orderId: string) =>{
+        navigation.navigate('details',{ orderId })
+    }
 
   return (
     <VStack flex={1} pb={6} bg="gray.700">
@@ -76,7 +87,7 @@ export function Home() {
         <VStack flex={1} px={6}>
             <HStack w="full" mt={8} mb={4} justifyContent="space-between" alignItems='center'>
                 <Heading color='gray.100'>
-                    Meus Chamados
+                    Solicitações
                 </Heading>
                 <Text color='gray.200' >3</Text>
             </HStack>
@@ -99,7 +110,7 @@ export function Home() {
             <FlatList
                 data={orders}
                 keyExtractor={item => item.id}
-                renderItem={({ item })=> <Order data={item}/>}
+                renderItem={({ item })=> <Order data={item} onPress={()=>handleOpenDetails(item.id)}/>}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{paddingBottom: 100}}
                 ListEmptyComponent={()=> (
@@ -113,7 +124,7 @@ export function Home() {
                 )}
             />
         </VStack>
-        <Button element='Nova solicitção' mx={6}/>
+        <Button element='Nova solicitção' mx={6} onPress={handleNewOrder}/>
     </VStack>
   );
 }
