@@ -23,14 +23,14 @@ const SignIn = () => {
                 placeholder='E-mail'
                 mb={4}
                 onChangeText={setName}
-                // InputLeftElement={<Icon as={<Envelope color={colors.gray[300]}/>} ml={4}/>}
+                InputLeftElement={<Icon as={<Envelope color={colors.gray[300]}/>} ml={4}/>}
                 />
             <Input 
                 placeholder="Senha" 
                 mb={8}
                 secureTextEntry
                 onChangeText={setPassword}
-                // InputLeftElement={<Icon as={<Key color={colors.gray[300]}/>} ml={4}/>}
+                InputLeftElement={<Icon as={<Key color={colors.gray[300]}/>} ml={4}/>}
                 />
             <Button element="Entrar" w="full"/>
         </VStack>
